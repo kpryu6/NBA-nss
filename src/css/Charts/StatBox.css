@@ -1,0 +1,26 @@
+.Outer {
+  background-color: #f2f2f2;
+  border-radius: 6px;
+}
+
+.StatRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: -20px;
+}
+
+.StatLabel {
+  display: block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-right: 20px;
+}
+
+.StatValue {
+  font-weight: bold;
+  color: #1f6bef;
+  font-size: 30px;
+}

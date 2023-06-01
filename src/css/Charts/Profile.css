@@ -1,0 +1,30 @@
+.Outer {
+  border: 1px solid black;
+  width: 500px;
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+.ImageWrapper {
+  text-align: center;
+}
+
+.ImageWrapper img {
+  vertical-align: middle;
+}
+
+.StatsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.StatsWrapper div {
+  width: 50%;
+  border-bottom: 1px dashed #c9c9cb;
+}
+
+.StatsWrapper div:first-child,
+.StatsWrapper div:nth-child(3),
+.StatsWrapper div:nth-child(5) {
+  border-right: 1px dashed #c9c9cb;
+}

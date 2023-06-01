@@ -1,0 +1,207 @@
+.stat-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-title {
+  font-size: 40px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.up-table {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.search-box {
+  margin-left: 140px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.search-box input {
+  margin-left: 5px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #18415c;
+}
+
+.per-page-select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-left: 827px;
+  margin-bottom: 10px;
+}
+
+.per-page {
+  padding: 0.5rem;
+  font-size: 18px;
+  width: 100%;
+}
+
+.per-page-select select {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  width: 100%;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.per-page-select select:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+.table-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.table {
+  font-size: 18px;
+  border-radius: 10px;
+  width: 1170px;
+  margin-left: 5px;
+  background-color: #f8f9fa;
+  margin-bottom: 1rem;
+  color: #000000;
+  border: 1px solid #dee2e6;
+  border-spacing: 1;
+}
+
+.table th:nth-child(1) {
+  width: 10%;
+}
+
+.table th:nth-child(2) {
+  width: 10%;
+}
+
+.table th:nth-child(3) {
+  width: 10%;
+}
+
+.table th:nth-child(4) {
+  width: 10%;
+}
+
+.table th:nth-child(5) {
+  width: 10%;
+}
+
+.table th:nth-child(6) {
+  width: 10%;
+}
+
+.table th:nth-child(7) {
+  width: 10%;
+}
+
+.table th:nth-child(8) {
+  width: 10%;
+}
+
+.table th:nth-child(9) {
+  width: 10%;
+}
+
+.table th:nth-child(10) {
+  width: 10%;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 2px solid #dee2e6;
+}
+
+.table thead {
+  background-color: #18415c;
+  color: #fff;
+}
+
+.table tbody td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody tr.selected {
+  background-color: #e2e2e2;
+}
+
+.table tbody tr:hover td {
+  background-color: #f2f2f2;
+}
+
+.PaginationBox {
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.pagination li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.pagination li:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.pagination li:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #18415c;
+  font-size: 1rem;
+}
+
+.pagination li a:hover,
+.pagination li.active a {
+  color: black;
+}
+
+.pagination li.active {
+  background-color: #000000;
+}
+
+.pagination li.active a {
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
