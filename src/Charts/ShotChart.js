@@ -1,12 +1,37 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
-
+import axios from "axios";
 import Search from "./Search";
 import Profile from "./Profile";
 import "../css/Charts/ShotChart.css";
 
 function ShotCharts() {
   const svgRef = useRef();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const options = {
+          method: "GET",
+          url: "https://basketapi1.p.rapidapi.com/api/basketball/player/817050/tournament/132/season/38191/shot-actions/playoffs",
+          headers: {
+            "X-RapidAPI-Key": process.env.REACT_APP_NBA_API_SHOT_KEY,
+            "X-RapidAPI-Host": "basketapi1.p.rapidapi.com",
+          },
+        };
+
+        const response = await axios.request(options);
+        setData(response.data.shotActions.slice(0, 40));
+        console.log(response.data);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     // constants
@@ -150,31 +175,27 @@ function ShotCharts() {
       .attr("width", x(25))
       .attr("height", y(47));
 
-    // 데이터 준비
-    const data = [];
-    const numDataPoints = 50;
-
-    for (let i = 0; i < numDataPoints; i++) {
-      const x = Math.floor(Math.random() * 47) - 23;
-      const y = Math.floor(Math.random() * 31);
-      const per = Math.floor(Math.random() * 51) + 30 + "%";
-
-      data.push({ x, y, per });
-    }
+    // 데이터 조정
+    const adjustedData = data.map((d) => ({
+      made: d.made,
+      missed: d.missed,
+      x: Math.random() * 50 - 25, // -25부터 25까지의 랜덤한 숫자
+      y: Math.random() * 28 + 1, // 1부터 28까지의 랜덤한 숫자
+    }));
 
     // 점과 툴팁 추가
     g.selectAll("dot")
-      .data(data)
+      .data(adjustedData)
       .enter()
       .append("circle")
       .attr("r", 5) // 점의 반지름 설정
       .attr("cx", (d) => x(d.x)) // x좌표 설정
       .attr("cy", (d) => y(d.y)) // y좌표 설정
       .style("fill", (d) => {
-        if (parseFloat(d.per) >= 50) {
-          return "#ff451c";
+        if (d.made === 1) {
+          return "#FFF978"; // 만들어진 경우 파란색
         } else {
-          return "#4c566a"; // 원하는 다른 색상으로 변경하세요.
+          return "#C29F6D"; // 빗나간 경우 빨간색
         }
       })
       .on("mouseover", function (d) {
@@ -192,15 +213,14 @@ function ShotCharts() {
           .style("opacity", 0.8)
           .style("right", "450px") // 툴팁의 x좌표 설정
           .style("top", "480px") // 툴팁의 y좌표 설정
-
-          .text(d.per); // 툴팁의 내용 설정
+          .text(d.made === 1 ? "made" : "missed"); // 툴팁의 내용 설정
       })
-      .on("mouseout", function (d) {
+      .on("mouseout", function () {
         // 마우스 아웃 이벤트 핸들러
         d3.select(this).attr("r", 5); // 점의 크기 원래대로 복구
         d3.select(".tooltip").remove(); // 툴팁 요소 제거
       });
-  }, []);
+  }, [data]);
 
   return (
     <div>

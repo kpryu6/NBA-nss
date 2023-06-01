@@ -7,7 +7,7 @@ function News() {
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const newsPerPage = 6;
-  const [totalPages, setTotalPages] = useState(1);
+
   const [currentNews, setCurrentNews] = useState([]);
 
   const fetchNews = async (page) => {
@@ -17,19 +17,13 @@ function News() {
         url: "https://nba-latest-news.p.rapidapi.com/articles",
         params: { source: "nba" },
         headers: {
-          "X-RapidAPI-Key": process.env.REACT_APP_NBA_API_KEY,
+          "X-RapidAPI-Key": process.env.REACT_APP_NBA_API_NEWS_KEY,
           "X-RapidAPI-Host": "nba-latest-news.p.rapidapi.com",
         },
       };
       const response = await axios.request(options);
-      console.log(response.data);
 
-      const articles = response.data;
-
-      const totalPages = Math.ceil(articles.length / newsPerPage);
-      setTotalPages(totalPages);
-
-      const currentNews = articles;
+      const currentNews = response.data;
       setNews(currentNews);
 
       console.log(currentNews);
