@@ -28,7 +28,6 @@ Users can check the latest NBA news and view the statistics and shot charts of s
 
 Here are the simple steps to install and run the project:
 
-1. Clone the repository.
    ```
    git clone https://github.com/peachpotato6/NBA-nss.git
    cd NBA-nss
