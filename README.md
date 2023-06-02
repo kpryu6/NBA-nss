@@ -30,22 +30,17 @@ Here are the simple steps to install and run the project:
 
 1. Clone the repository.
    ```
-   git clone https://github.com/your-username/nba-app.git
-   cd nba-app
+   git clone https://github.com/peachpotato6/NBA-nss.git
+   cd NBA-nss
    npm install
    npm start
    ```
-
-2. Access the application in your web browser.
-   ```
-   http://localhost:3000
-   ```
-
 
 <br>
 
 
 ## Technologies and Libraries Used
+
 <div align=left> 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
 <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
