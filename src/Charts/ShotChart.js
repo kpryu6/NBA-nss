@@ -225,14 +225,13 @@ function ShotCharts() {
   return (
     <div>
       <div className="shot-charts">
-        <Search />
-        <h1>2022-23 Lebron James</h1>
-
         <div className="except-title">
           <div className="profile-wrapper">
             <Profile />
           </div>
           <div className="other-content">
+            <Search />
+            <h1>2022-23 Lebron James Shot Chart</h1>
             <svg ref={svgRef} width={500} height={500} />
           </div>
         </div>

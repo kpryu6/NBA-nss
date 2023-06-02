@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
-
+import axios from "axios";
 import { GrSearch } from "react-icons/gr";
-import "../css/Stats/ShotStats.css";
+import "../css/Stats/Stats.css";
 
-const ShotStats = () => {
+const Stats = () => {
   const [shotData, setShotData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -12,21 +12,37 @@ const ShotStats = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredshots, setFilteredshots] = useState([]);
 
-  // 파드 리스트
   useEffect(() => {
-    const test = Array.from({ length: 28 }, (_, i) => ({
-      id: i + 1,
-      name: `James${(i % 2) + 1}`,
-      shot1: "58.8%",
-      shot2: "82.7%",
-    }));
-    setShotData(test);
+    const fetchData = async () => {
+      const options = {
+        method: "GET",
+        url: "https://free-nba.p.rapidapi.com/stats",
+        params: {
+          page: "0",
+          per_page: "25",
+        },
+        headers: {
+          "X-RapidAPI-Key": process.env.REACT_APP_NBA_API_STATS_KEY,
+          "X-RapidAPI-Host": "free-nba.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await axios.request(options);
+        setShotData(response.data.data);
+        console.log(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  //파드 검색
+  //선수 검색
   useEffect(() => {
     const filtered = shotData.filter((shot) =>
-      shot.name.toLowerCase().includes(searchValue.toLowerCase())
+      shot.player.first_name.toLowerCase().includes(searchValue.toLowerCase())
     );
     setFilteredshots(filtered);
     setCurrentPage(1);
@@ -39,24 +55,30 @@ const ShotStats = () => {
   const currentItems = filteredshots.slice(indexOfFirstItem, indexOfLastItem);
 
   const renderRow = (shot) => {
+    const getDisplayValue = (value) => {
+      return value !== null ? value : "-";
+    };
+
     return (
       <React.Fragment key={shot.id}>
         <td>{shot.id}</td>
-        <td>{shot.name}</td>
-        <td>{shot.shot1}</td>
-        <td>{shot.shot2}</td>
-
-        <td>{shot.shot1}</td>
-        <td>{shot.shot2}</td>
-
-        <td>{shot.shot1}</td>
+        <td>{getDisplayValue(shot.team.full_name)}</td>
+        <td>
+          {getDisplayValue(
+            shot.player.first_name + " " + shot.player.last_name
+          )}
+        </td>
+        <td>{getDisplayValue(shot.ast)}</td>
+        <td>{getDisplayValue(shot.dreb)}</td>
+        <td>{getDisplayValue(shot.fg_pct)}</td>
+        <td>{getDisplayValue(shot.turnover)}</td>
       </React.Fragment>
     );
   };
 
   return (
     <div className="stat-list">
-      <h1 className="stat-title">Shot Stats</h1>
+      <h1 className="stat-title">Player Stats</h1>
 
       <div className="up-table">
         <div className="search-box">
@@ -86,12 +108,13 @@ const ShotStats = () => {
         <thead className="table-head">
           <tr>
             <th>#</th>
+            <th>TEAM</th>
             <th>NAME</th>
-            <th>Less than 5 FT.</th>
-            <th>5~9 FT.</th>
-            <th>10~14 FT.</th>
-            <th>15~19 FT.</th>
-            <th>Over 19 FT.</th>
+            <th>AST</th>
+            <th>REB</th>
+
+            <th>FGP</th>
+            <th>TO</th>
           </tr>
         </thead>
         <tbody>
@@ -114,4 +137,4 @@ const ShotStats = () => {
   );
 };
 
-export default ShotStats;
+export default Stats;

@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 1rem;
 }
 
 .stat-title {
-  font-size: 40px;
   margin-top: 30px;
   margin-bottom: 10px;
   text-align: center;
@@ -135,7 +135,7 @@
 }
 
 .table thead {
-  background-color: #18415c;
+  background-color: #0b0f23;
   color: #fff;
 }
 
