@@ -1,16 +1,28 @@
 # NBA News & Stats & Shot Charts App
----
+
+
+
 <img width="350" src="https://github.com/boanlab/study-notes/assets/113777043/7bb5adf4-a9d0-4902-9387-4e6427e391d2">
 
----
+&nbsp;
 
-This application is a React-based web application that provides NBA news, player statistics, and player shot charts. Users can check the latest NBA news and view the statistics and shot charts of specific players.
+## Descriptions
+
+This application is a React-based web application that provides NBA news, player statistics, and player shot charts.
+Users can check the latest NBA news and view the statistics and shot charts of specific players.
+
+<br>
 
 ## Features
 
-- NBA News Check: Fetches the latest NBA news through an API and displays it on the screen.
-- Player Statistics Lookup: Retrieves player statistics data from the API and presents it in a tabular format.
-- Player Shot Chart: Visualizes the shot chart of the selected player.
+- NBA News Check
+   - Fetches the latest NBA news through an API and displays it on the screen.
+- Player Statistics Lookup
+   - Retrieves player statistics data from the API and presents it in a tabular format.
+- Player Shot Chart 
+   - Visualizes the shot chart of the selected player.
+
+<br>
 
 ## Installation and Setup
 
@@ -29,6 +41,10 @@ Here are the simple steps to install and run the project:
    http://localhost:3000
    ```
 
+
+<br>
+
+
 ## Technologies and Libraries Used
 <div align=left> 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
@@ -39,9 +55,13 @@ Here are the simple steps to install and run the project:
 <br>
 </div>
 
+<br>
+
 ## API Usage
 
 This application utilizes the API provided by [RAPID-API](https://rapidapi.com/hub). You need to obtain an API key and set it as an environment variable in your project.
+
+<br>
 
 ## Contributing
 
