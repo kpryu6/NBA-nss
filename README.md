@@ -1,4 +1,4 @@
-# NBA News & Stats & Shot Charts App
+# NBA App
 
 
 
