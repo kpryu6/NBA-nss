@@ -13,16 +13,25 @@ Users can check the latest NBA news and view the statistics and shot charts of s
 
 <br>
 
+
 ## Features
 
 - NBA News Check
-   - Fetches the latest NBA news through an API and displays it on the screen.
+   - Fetches the latest NBA news through an API and displays news title.
+   - Click news box and go to nba.com news.
 - Player Statistics Lookup
-   - Retrieves player statistics data from the API and presents it in a tabular format.
+   - Retrieves player statistics data from the API and presents it.
 - Player Shot Chart 
-   - Visualizes the shot chart of the selected player.
+   - Visualizes the shot chart of the selected player in Player stats page.
 
 <br>
+
+<div align=left> 
+<img width="26.6%" src="https://github.com/boanlab/study-notes/assets/113777043/52e7bb37-daf2-4c05-a9a6-553ee771bdb2"/>
+<img width="50%" src="https://github.com/boanlab/study-notes/assets/113777043/2df77dd3-5f03-4161-8488-e6dd6f9a7edb"/>
+<img width="77%" src="https://github.com/boanlab/study-notes/assets/113777043/3854885f-3ae1-48e3-9ea5-2cafc6c50f3e"/>
+</div>
+
 
 ## Installation and Setup
 
