@@ -34,7 +34,7 @@ function News() {
 
   useEffect(() => {
     fetchNews(currentPage);
-  }, [currentPage]);
+  }, []);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -47,7 +47,7 @@ function News() {
 
   return (
     <div>
-      <h1>News</h1>
+      <h1>NBA Latest News</h1>
       {currentNews.map((newsItem, index) => (
         <div key={index} className="news-box">
           <a

@@ -88,43 +88,55 @@
 }
 
 .table th:nth-child(1) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(2) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(3) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(4) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(5) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(6) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(7) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(8) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(9) {
-  width: 10%;
+  width: 7%;
 }
 
 .table th:nth-child(10) {
-  width: 10%;
+  width: 7%;
+}
+
+.table th:nth-child(11) {
+  width: 7%;
+}
+
+.table th:nth-child(12) {
+  width: 7%;
+}
+
+.table th:nth-child(13) {
+  width: 7%;
 }
 
 .table th,

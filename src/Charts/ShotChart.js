@@ -4,10 +4,25 @@ import axios from "axios";
 import Search from "./Search";
 import Profile from "./Profile";
 import "../css/Charts/ShotChart.css";
+import { useSelector } from "react-redux";
 
 function ShotCharts() {
+  //redux로 shotData 받기
+  const shotData = useSelector((state) => state.shotData);
+  console.log(shotData);
   const svgRef = useRef();
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [playerName, setPlayerName] = useState("");
+
+  const searchPlayer = (e) => {
+    e.preventDefault();
+    setPlayerName(searchTerm);
+  };
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,37 +37,50 @@ function ShotCharts() {
         };
 
         const response = await axios.request(options);
-        setData(response.data.shotActions.slice(0, 40));
-        console.log(response.data);
+        console.log(playerName);
+        const shooting = shotData
+          .filter(
+            (shot) =>
+              shot.player.first_name + " " + shot.player.last_name ===
+              playerName
+          )
+          .map((shot) => shot.fga);
+
+        setData(response.data.shotActions.slice(0, shooting));
+
+        console.log(response.data.shotActions.slice(0, shooting)); //shotData.fga -> undefined
+
         console.log(data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
-  }, []);
+    if (playerName) {
+      fetchData();
+    }
+  }, [playerName]);
 
   useEffect(() => {
-    // constants
+    // 농구코트 그리기
     const width = 700;
     const usableWidth = Math.min(700, width);
     const margins = 30;
     const height = (usableWidth / 50) * 47;
 
-    // scales y
+    // 세로 길이
     const y = d3
       .scaleLinear()
       .range([0, height - margins * 2])
       .domain([0, 47]);
 
-    // constants basket
+    // 골대
     const basket = y(4);
     const basketRadius = y(4.75) - basket;
 
     const pi = Math.PI / 180;
 
-    // scales x
+    // 가로 길이
     const x = d3
       .scaleLinear()
       .range([0, usableWidth - margins * 2])
@@ -75,16 +103,16 @@ function ShotCharts() {
       return line(points);
     };
 
-    // angle for the three point line
+    // 3점라인 각도
     const threeAngle = (Math.atan((10 - 0.75) / 22) * 180) / Math.PI;
 
-    // select the svg element
+    // svg
     const svg = d3
       .select(svgRef.current)
       .attr("width", usableWidth) // 변경된 가로 크기 적용
       .attr("height", height + margins * 2); // 변경된 세로 크기에 여백도 반영
 
-    // append a group element
+    // group element
     const g = svg
       .append("g")
       .attr("transform", `translate(${[margins, margins]})`)
@@ -118,23 +146,23 @@ function ShotCharts() {
       .attr("width", x(6) - x(-6))
       .attr("height", y(15) + basket);
 
-    // restricted area
+    // 제한 구역
     g.append("path")
       .attr("d", arc(x(4) - x(0), 90 * pi, 270 * pi))
       .attr("transform", `translate(${[x(0), basket]})`);
 
-    // freethrow
+    // 자유투
     g.append("path")
       .attr("d", arc(x(6) - x(0), 90 * pi, 270 * pi))
       .attr("transform", `translate(${[x(0), y(15) + basket]})`);
 
-    // freethrow dotted
+    // 자유투 안쪽
     g.append("path")
       .attr("d", arc(x(6) - x(0), -90 * pi, 90 * pi))
       .attr("stroke-dasharray", "3,3")
       .attr("transform", `translate(${[x(0), y(15) + basket]})`);
 
-    // 3-point lines
+    // 3점 라인
     g.append("line")
       .attr("x1", x(-21.775)) // lines up the stroke a little better than the true 22 ft.
       .attr("x2", x(-21.775))
@@ -145,7 +173,7 @@ function ShotCharts() {
       .attr("x2", x(21.775))
       .attr("y2", y(14));
 
-    // 3-point arc
+    // 3점 각
     g.append("path")
       .attr("d", arc(y(23.75), (threeAngle + 90) * pi, (270 - threeAngle) * pi))
       .attr("transform", `translate(${[x(0), basket + basketRadius]})`);
@@ -193,11 +221,12 @@ function ShotCharts() {
       .attr("cy", (d) => y(d.y)) // y좌표 설정
       .style("fill", (d) => {
         if (d.made === 1) {
-          return "#FFF978"; // 만들어진 경우 파란색
+          return "#FFF978"; // 만들어진 경우 노란색
         } else {
-          return "#C29F6D"; // 빗나간 경우 빨간색
+          return "#C29F6D"; // 빗나간 경우 갈색
         }
       })
+
       .on("mouseover", function (d) {
         // 마우스 오버 이벤트 핸들러
         d3.select(this).attr("r", 10); // 점의 크기 변경
@@ -227,11 +256,39 @@ function ShotCharts() {
       <div className="shot-charts">
         <div className="except-title">
           <div className="profile-wrapper">
-            <Profile />
+            {/* Profile 컴포넌트에 전달 
+            Search에서 찾은거랑 같은거 전달*/}
+            {shotData.map((shot) => {
+              const name = shot.player.first_name + " " + shot.player.last_name;
+              console.log(name);
+              if (name === searchTerm) {
+                return (
+                  <Profile
+                    key={shot.id}
+                    name={name}
+                    stats={[
+                      { label: "points_per_game", value: shot.pts },
+                      { label: "assists_per_game", value: shot.ast },
+                      { label: "blocks_per_game", value: shot.blk },
+                      { label: "three_point_percentage", value: shot.fg3_pct },
+                      { label: "field_goal_all", value: shot.fga },
+                      { label: "field_goal_percentage", value: shot.fg_pct },
+                      { label: "rebounds_per_game", value: shot.reb },
+                    ]}
+                  />
+                );
+              }
+            })}
           </div>
           <div className="other-content">
-            <Search />
-            <h1>2022-23 Lebron James Shot Chart</h1>
+            {/* Search 컴포넌트로부터 이름을 입력받는 input과 button */}
+            <Search
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              searchPlayer={searchPlayer}
+            />
+            <h1>{`2022-23 ${playerName} Shot Chart`}</h1>
+            {/* SVG와 관련된 코드 */}
             <svg ref={svgRef} width={500} height={500} />
           </div>
         </div>

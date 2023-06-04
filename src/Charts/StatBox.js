@@ -7,14 +7,17 @@ function StatBox({ stat }) {
     assists_per_game: "Assists",
     blocks_per_game: "Blocks",
     three_point_percentage: "Three Point Percentage",
+    field_goal_all: "Field Goal All",
     field_goal_percentage: "Field Goal Percentage",
     rebounds_per_game: "Rebounds",
   };
 
   const label = statsMap[stat.label];
   const value = stat.label.includes("percentage")
-    ? `${stat.value}%`
-    : stat.value;
+    ? stat.value
+      ? `${stat.value}%`
+      : "0"
+    : stat.value || "0";
 
   return (
     <div className="Outer">

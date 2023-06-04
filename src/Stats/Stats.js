@@ -3,14 +3,18 @@ import Pagination from "react-js-pagination";
 import axios from "axios";
 import { GrSearch } from "react-icons/gr";
 import "../css/Stats/Stats.css";
+import { useDispatch } from "react-redux";
 
+import ShotChart from "../Charts/ShotChart";
 const Stats = () => {
+  const dispatch = useDispatch();
   const [shotData, setShotData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const [searchValue, setSearchValue] = useState("");
   const [filteredshots, setFilteredshots] = useState([]);
+  const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +22,7 @@ const Stats = () => {
         method: "GET",
         url: "https://free-nba.p.rapidapi.com/stats",
         params: {
-          page: "0",
+          page: "5",
           per_page: "25",
         },
         headers: {
@@ -30,7 +34,9 @@ const Stats = () => {
       try {
         const response = await axios.request(options);
         setShotData(response.data.data);
-        console.log(response.data.data);
+        dispatch({ type: "SET_SHOT_DATA", payload: response.data.data });
+
+        console.log(shotData);
       } catch (error) {
         console.error(error);
       }
@@ -54,9 +60,10 @@ const Stats = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredshots.slice(indexOfFirstItem, indexOfLastItem);
 
+  console.log(shotData);
   const renderRow = (shot) => {
     const getDisplayValue = (value) => {
-      return value !== null ? value : "-";
+      return value !== 0 ? value : "-";
     };
 
     return (
@@ -69,7 +76,13 @@ const Stats = () => {
           )}
         </td>
         <td>{getDisplayValue(shot.ast)}</td>
-        <td>{getDisplayValue(shot.dreb)}</td>
+        <td>{getDisplayValue(shot.reb)}</td>
+        <td>{getDisplayValue(shot.pts)}</td>
+        <td>{getDisplayValue(shot.stl)}</td>
+        <td>{getDisplayValue(shot.fg3m)}</td>
+        <td>{getDisplayValue(shot.fg3a)}</td>
+        <td>{getDisplayValue(shot.fgm)}</td>
+        <td>{getDisplayValue(shot.fga)}</td>
         <td>{getDisplayValue(shot.fg_pct)}</td>
         <td>{getDisplayValue(shot.turnover)}</td>
       </React.Fragment>
@@ -112,7 +125,12 @@ const Stats = () => {
             <th>NAME</th>
             <th>AST</th>
             <th>REB</th>
-
+            <th>PTS</th>
+            <th>STL</th>
+            <th>FG3M</th>
+            <th>FG3A</th>
+            <th>FGM</th>
+            <th>FGA</th>
             <th>FGP</th>
             <th>TO</th>
           </tr>

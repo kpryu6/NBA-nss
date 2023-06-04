@@ -5,23 +5,25 @@
 .news-box {
   background-color: #f2f2f2;
   border-radius: 10px;
+  border: 2px solid #ddd;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin-bottom: 20px;
   width: 600px;
-  height: 60px;
+  height: 50px;
   margin-left: auto;
   margin-right: auto;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.5s, box-shadow 0.3s;
   cursor: pointer;
 }
 
 .news-box:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .news-box h2 {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 10px;
   flex: 1;
 }
@@ -56,5 +58,5 @@
 }
 
 .page-link:hover {
-  background-color: #ddd;
+  background-color: #000000;
 }
