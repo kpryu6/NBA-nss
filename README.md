@@ -2,7 +2,7 @@
 
 
 
-<img width="350" src="https://github.com/boanlab/study-notes/assets/113777043/7bb5adf4-a9d0-4902-9387-4e6427e391d2">
+<img width="350" src="images/nba shot charts logo.png">
 
 &nbsp;
 
@@ -27,9 +27,9 @@ Users can check the latest NBA news and view the statistics and shot charts of s
 <br>
 
 <div align=left> 
-<img width="26.6%" src="https://github.com/boanlab/study-notes/assets/113777043/52e7bb37-daf2-4c05-a9a6-553ee771bdb2"/>
-<img width="50%" src="https://github.com/boanlab/study-notes/assets/113777043/2df77dd3-5f03-4161-8488-e6dd6f9a7edb"/>
-<img width="77%" src="https://github.com/boanlab/study-notes/assets/113777043/3854885f-3ae1-48e3-9ea5-2cafc6c50f3e"/>
+<img width="26.6%" src="images/news.gif"/>
+<img width="50%" src="images/stats.gif"/>
+<img width="77%" src="images/charts.gif"/>
 </div>
 
 
