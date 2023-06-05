@@ -48,7 +48,7 @@ function ShotCharts() {
 
         setData(response.data.shotActions.slice(0, shooting));
 
-        console.log(response.data.shotActions.slice(0, shooting)); //shotData.fga -> undefined
+        console.log(response.data.shotActions.slice(0, shooting));
 
         console.log(data);
       } catch (error) {
