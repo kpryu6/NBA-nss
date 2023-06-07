@@ -35,14 +35,25 @@ Users can check the latest NBA news and view the statistics and shot charts of s
 
 ## Installation and Setup
 
-Here are the simple steps to install and run the project:
-
+### Steps to install and run the project:
    ```
    git clone https://github.com/peachpotato6/NBA-nss.git
    cd NBA-nss
    npm install
-   npm start
    ```
+   
+   * Obtain API key in [RAPID-API](https://rapidapi.com/hub)
+   
+   * Make a file name .env
+   
+   * Add API key in .env like this.
+   
+    REACT_APP_API_KEY=[API KEY]
+   
+   * Finally, run the project
+   
+    npm start
+    
 
 <br>
 
