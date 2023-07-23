@@ -4,7 +4,6 @@
 
 <img width="350" src="images/nba shot charts logo.png">
 
-&nbsp;
 
 ## Descriptions
 
